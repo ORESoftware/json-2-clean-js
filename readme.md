@@ -16,26 +16,30 @@ No extra strings and ugly stuff. Single quotes instead of double where possible.
 
 ### Usage
 
+<br>
+
 >
->  Read from a file:
+>  <b>Read from a file:</b>
 >
 >```
 > $ json-2-clean-js -f package.json    
 >```
 >
 
+<br>
 
 >
->  Read from a string at the command line:
+> <b>Read from a string at the command line:</b>
 >
 >```
 > $ json-2-clean-js -i 'input string here'    
 >```
 >
 
+<br>
 
 >
->  Read from stdin at the command line using a heredoc:
+>  <b>Read from stdin at the command line using a heredoc:</b>
 >
 >```
 > $ json-2-clean-js <<H
@@ -44,8 +48,10 @@ No extra strings and ugly stuff. Single quotes instead of double where possible.
 >```
 >
 
+<br>
+
 >
->  Read from stdin at the command line using a herestring:
+>  <b>Read from stdin at the command line using a herestring:</b>
 >
 >```
 > $ json-2-clean-js <<< 'use a heredoc instead of this, pls'
@@ -53,9 +59,10 @@ No extra strings and ugly stuff. Single quotes instead of double where possible.
 >
 
 
+<br>
 
 >
->  Or the most obvious way (but not as nice as heredoc)
+>  <b>Or the most obvious way (but not as nice as heredoc)</b>
 >
 >```
 > $ echo 'foo' | json-2-clean-js
