@@ -5,32 +5,19 @@ import * as fs from 'fs';
 import {statSync} from "fs";
 import * as path from "path";
 
-const file = process.argv[2];
+const fileIndex = process.argv.indexOf('-f');
 
-if(!file){
-  console.error('Please pass a file path as the first argument.');
-  process.exit(1);
-}
+let filePath = null;
 
-const f = path.isAbsolute(file)? file : path.resolve(process.cwd() + '/' + file);
-
-try{
-  if(!statSync(f).isFile()){
-    throw `The following path is not a file: ${f}`
+if(fileIndex > 1){
+  filePath = process.argv[fileIndex + 1];
+  if(!filePath){
+    console.error('Please pass a file path after the -f argument.');
+    process.exit(1);
   }
 }
-catch (e) {
-  console.error(e.message);
-  process.exit(1);
-}
 
 
-const r = require(f);
-
-if (!(r && typeof r === 'object')) {
-  console.log(r);
-  process.exit(0);
-}
 
 const run = (z: any) => {
   
@@ -108,5 +95,49 @@ const run = (z: any) => {
 };
 
 
-run(r);
+if(filePath){
+  
+  const f = path.isAbsolute(filePath)? filePath : path.resolve(process.cwd() + '/' + filePath);
+  
+  try{
+    if(!statSync(f).isFile()){
+      throw `The following path is not a file: ${f}`
+    }
+  }
+  catch (e) {
+    console.error(e.message);
+    process.exit(1);
+  }
+  
+  
+  const r = require(f);
+  
+  if (!(r && typeof r === 'object')) {
+    console.log(r);
+    process.exit(0);
+  }
+  
+  run(r);
+  process.exit(0);
+}
+
+
+const stdin = {
+  data: ''
+};
+
+process.stdin.resume().on('data', d => {
+   stdin.data += d;
+});
+
+process.stdin.once('end', () => {
+  let x  = null;
+  console.log(stdin.data);
+  eval('x = ' + stdin.data);
+  run(x);
+});
+
+
+
+
 
