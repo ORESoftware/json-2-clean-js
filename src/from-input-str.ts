@@ -10,8 +10,6 @@ const r3 = /:[ ]*"[^']*"[^"']/g;
 
 export const run = (v: any) => {
   
-  console.log(v);
-  
   v = v.replace(r1, (m: string) => {
     const first = m.indexOf("'");
     const lst = m.lastIndexOf("'");
@@ -34,6 +32,6 @@ export const run = (v: any) => {
   
   //''EBUG",
   
-  console.log(v);
+  console.log(String(v).trim());
   
 };

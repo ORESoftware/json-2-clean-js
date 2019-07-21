@@ -16,11 +16,55 @@ No extra strings and ugly stuff. Single quotes instead of double where possible.
 
 ### Usage
 
-```bash
+>
+>  Read from a file:
+>
+>```
+> $ json-2-clean-js -f package.json    
+>```
+>
 
-$ json-2-clean-js package.json
 
-```
+>
+>  Read from a string at the command line:
+>
+>```
+> $ json-2-clean-js -i 'input string here'    
+>```
+>
+
+
+>
+>  Read from stdin at the command line using a heredoc:
+>
+>```
+> $ json-2-clean-js <<H
+>     'use a heredoc, it's much much better'
+>  H  
+>```
+>
+
+>
+>  Read from stdin at the command line using a herestring:
+>
+>```
+> $ json-2-clean-js <<< 'use a heredoc instead of this, pls'
+>```
+>
+
+
+
+>
+>  Or the most obvious way (but not as nice as heredoc)
+>
+>```
+> $ echo 'foo' | json-2-clean-js
+>```
+>
+
+
+
+### Example input/output:
 
 
 Input:
