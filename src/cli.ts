@@ -51,7 +51,7 @@ if (filePath) {
 }
 
 if (inputStrIndex) {
-  fromInputStr.run();
+  fromInputStr.run(null);
   process.exit(0);
 }
 
