@@ -14,6 +14,7 @@ const inputStrIndex = process.argv.indexOf('-i');
 let filePath = null;
 
 if (fileIndex > 1) {
+  
   if (inputStrIndex > 1) {
     throw 'Please pass only one of -i or -f options. -f is for a file, -i is for a raw string.';
   }
@@ -50,8 +51,15 @@ if (filePath) {
   process.exit(0);
 }
 
-if (inputStrIndex) {
-  fromInputStr.run(null);
+if (inputStrIndex > 1) {
+  
+  const str = process.argv[inputStrIndex + 1];
+  
+  if(!str){
+    throw 'You passed the -i input string option, but no argument followed.';
+  }
+  
+  fromInputStr.run(str);
   process.exit(0);
 }
 
@@ -64,10 +72,10 @@ process.stdin.resume().on('data', d => {
 });
 
 process.stdin.once('end', () => {
-  let x = null;
-  console.log(stdin.data);
-  eval('x = ' + stdin.data);
-  fromStdin.run(x);
+  // let x = null;
+  // console.log(stdin.data);
+  // eval('x = ' + stdin.data);
+  fromInputStr.run(stdin.data);
 });
 
 
